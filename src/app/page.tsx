@@ -1,5 +1,12 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
+
+export const metadata: Metadata = {
+  title: "Mohannic.com",
+  description:
+    "mohannic is a creative platform which combines creativity and technology. It is base out of bhilwara, Rajasthan",
+};
 
 export default function Home() {
   return (
