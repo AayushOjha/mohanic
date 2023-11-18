@@ -4,7 +4,7 @@ import { Navbar } from "../Navbar";
 import { PageSlider } from "../PageSlider";
 import { Metadata } from "next";
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: "चुनिंदा दिवाली चुटकुले - इस दिवाली अपनी हंसी को करें दोगुना",
   description:
     "इस दिवाली अपने और अपने दोस्तों के साथ कुछ मज़ेदार चुटकुले शेयर करके अपनी हंसी को दोगुना करें। हम आपके लिए चुनिंदा दिवाली चुटकुले लेकर आए हैं, जो आपको ज़रूर हंसाएंगे।",
