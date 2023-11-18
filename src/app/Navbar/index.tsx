@@ -9,7 +9,7 @@ const Navbar = (props: Props) => {
       <div>
         <BsFillGridFill size={20} />
       </div>
-      <div className="text-xl font-bold">{props.title}</div>
+      <h1 className="text-xl font-bold">{props.title}</h1>
       <div>
         <FaUserCircle size={23} />
       </div>

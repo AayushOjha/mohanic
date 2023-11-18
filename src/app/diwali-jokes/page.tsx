@@ -1,8 +1,7 @@
-import Head from "next/head";
-import { GeneralJokes } from "../../../public/jokes";
-import { Navbar } from "../Navbar";
-import { PageSlider } from "../PageSlider";
 import { Metadata } from "next";
+import { GeneralJokes } from "@/../public/jokes";
+import { Navbar } from "@app/Navbar";
+import { PageSlider } from "@app/PageSlider";
 
 export const metadata: Metadata = {
   title: "चुनिंदा दिवाली चुटकुले - इस दिवाली अपनी हंसी को करें दोगुना",

@@ -1,6 +1,7 @@
 "use client";
 
 import { BgColors } from "@/constant";
+// import useContentful from "@/helpers/fetchJokes";
 import { IJoke } from "@/interfaces";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
@@ -14,6 +15,12 @@ function PageSlider({ jokes }: IProps) {
   const scrollableDivRef = useRef<HTMLDivElement>(null);
 
   const [scrollPosition, setScrollPosition] = useState(0);
+
+  // useContentful()
+  //   .getJokes()
+  //   .then((jokes) => {
+  //     console.log(jokes?.items.map((item) => item.fields));
+  //   });
 
   const handleScroll = () => {
     if (scrollableDivRef.current) {
