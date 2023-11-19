@@ -2,10 +2,11 @@
 
 import { BgColors } from "@/constant";
 // import useContentful from "@/helpers/fetchJokes";
+import { BsWhatsapp } from "react-icons/bs";
 import { IJoke } from "@/interfaces";
-import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
+import ReactGA from "react-ga4";
 
 interface IProps {
   jokes: IJoke[];
@@ -53,10 +54,25 @@ function PageSlider({ jokes }: IProps) {
               key={index}
               id={joke.slug}
               style={{ backgroundColor: bgColor }}
-              className="w-full h-full pt-48 p-4 flex-shrink-0 snap-start leading-8 text-white overflow-hidden"
+              className="w-full h-full pt-40 pb-14 p-4 flex-shrink-0 snap-start leading-8 text-white overflow-hidden flex flex-col"
             >
-              <div className="w-full max-w-xl m-auto">
+              <div className="max-w-xl mx-auto flex-1">
                 <Markdown>{joke.content}</Markdown>
+              </div>
+
+              <div
+                className="w-fit mx-auto lal"
+                onClick={() => {
+                  ReactGA.event({
+                    category: "Joke | bhilwara jokes",
+                    action: "share",
+                  });
+
+                  const whatsappURL = `https://api.whatsapp.com/send?text=https://mohannic.com/jokes/bhilwara-jokes/`;
+                  window.open(whatsappURL, "_blank");
+                }}
+              >
+                <BsWhatsapp size="2rem" />
               </div>
             </div>
           );
