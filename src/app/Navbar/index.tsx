@@ -5,7 +5,7 @@ type Props = { title: string };
 
 const Navbar = (props: Props) => {
   return (
-    <div className="flex justify-between items-center p-4 fixed text-white top-0 w-screen z-10">
+    <nav className="flex justify-between items-center p-4 fixed text-white top-0 w-screen z-10">
       <div>
         <BsFillGridFill size={20} />
       </div>
@@ -13,7 +13,7 @@ const Navbar = (props: Props) => {
       <div>
         <FaUserCircle size={23} />
       </div>
-    </div>
+    </nav>
   );
 };
 
