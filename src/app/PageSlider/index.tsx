@@ -45,7 +45,7 @@ function PageSlider({ jokes }: IProps) {
     <>
       <ul
         ref={scrollableDivRef}
-        className="w-screen h-screen overflow-auto snap-x snap-mandatory scroll-smooth flex no-sidebar-visibility"
+        className="w-screen h-[100dvh] overflow-auto snap-x snap-mandatory scroll-smooth flex no-sidebar-visibility"
       >
         {jokes.map((joke, index) => {
           const bgColor = BgColors[index % 10];
@@ -54,14 +54,14 @@ function PageSlider({ jokes }: IProps) {
               key={index}
               id={joke.slug}
               style={{ backgroundColor: bgColor }}
-              className="w-full h-full pt-40 pb-14 p-4 flex-shrink-0 snap-start leading-8 text-white overflow-hidden flex flex-col"
+              className="w-full h-full pt-40 pb-16 p-4 flex-shrink-0 snap-start leading-8 text-white overflow-hidden flex flex-col"
             >
               <div className="max-w-xl mx-auto flex-1">
                 <Markdown>{joke.content}</Markdown>
               </div>
 
               <div
-                className="w-fit mx-auto lal"
+                className="w-fit mx-auto"
                 onClick={() => {
                   ReactGA.event({
                     category: "Joke | bhilwara jokes",
