@@ -4,14 +4,33 @@ import React from "react";
 import Marquee from "react-fast-marquee";
 
 type Props = {};
+const flags = Array(35).fill(null);
 
 const page = (props: Props) => {
   return (
     <>
       <div className="flex overflow-hidden">
-        <div className="bg-red-400 w-4 z-10 flex-shrink-0"></div>
+        <div className="w-6 h-full overflow-hidden">
+          <div className="animate-marquee ml-1">
+            {flags.map((flag) => (
+              <>
+                <Image
+                  src="https://res.cloudinary.com/dca1rzsyb/image/upload/v1703913216/mohannic/wishes/bhagwa1_hyfkwu.png"
+                  width={30}
+                  height={30}
+                  className="py-1"
+                  alt="ram mandir flag"
+                />
+              </>
+            ))}
+          </div>
+        </div>
         <div className="flex-1 flex flex-col gap-7 py-10">
-          <div className="w-fit mx-auto text-2xl font-semibold">Ayush</div>
+          <div className="w-fit mx-auto text-2xl font-semibold">
+            <h1 className="animate-pulse bg-gradient-to-r from-green-500 via-orange-500 to-violet-500 bg-clip-text text-transparent font-extrabold">
+              आयुष
+            </h1>
+          </div>
           <div className="s">
             <Image
               src="https://res.cloudinary.com/dca1rzsyb/image/upload/v1703913198/mohannic/wishes/kitrf_eyw2my.png"
@@ -22,11 +41,11 @@ const page = (props: Props) => {
             />
           </div>
           <div className="s">
-            <p id="demo">
+            <p className="text-center font-bold text-green-500">
               22<span className="text-red-500"> दिन ,</span> 13
               <span className="text-red-500"> घंटे,</span> 10
-              <span className="text-red-500"> मिनट,</span> 29
-              <span className="text-red-500">सेकंड</span>
+              <span className="text-red-500"> मिनट, </span> 29
+              <span className="text-red-500"> सेकंड </span>
               पहले
             </p>
           </div>
@@ -60,7 +79,21 @@ const page = (props: Props) => {
             </div>
           </Marquee>
         </div>
-        <div className="bg-red-400 w-4 z-10 flex-shrink-0"></div>
+        <div className="w-6 overflow-hidden">
+          <div className="animate-marquee2 ml-1">
+            {flags.map((flag) => (
+              <>
+                <Image
+                  src="https://res.cloudinary.com/dca1rzsyb/image/upload/v1703913216/mohannic/wishes/bhagwa1_hyfkwu.png"
+                  width={30}
+                  height={30}
+                  className="py-1"
+                  alt="ram mandir flag"
+                />
+              </>
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );

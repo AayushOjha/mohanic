@@ -13,6 +13,20 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        marquee: "marqueeDownUp 30s linear infinite",
+        marquee2: "marqueeUpDown 30s linear infinite",
+      },
+      keyframes: {
+        marqueeDownUp: {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(-100%)" },
+        },
+        marqueeUpDown: {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(100%)" },
+        },
+      },
     },
   },
   plugins: [],
