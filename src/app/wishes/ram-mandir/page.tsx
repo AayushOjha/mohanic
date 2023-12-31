@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { useSearchParams } from "next/navigation";
 import { getTimeLeft } from "@/helpers/getLeftTime";
@@ -16,7 +16,13 @@ const Page = (props: Props) => {
   const name = paramName || "राम भक्त";
   const date = moment("2024-01-22");
 
+  const audioRef = useRef<HTMLAudioElement>(null);
+
   const [timeLeft, setTimeLeft] = useState(getTimeLeft(date));
+  const [displayState, setDisplayState] = useState({
+    animation: false,
+    visible: false,
+  });
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -28,8 +34,70 @@ const Page = (props: Props) => {
     };
   }, []);
 
+  const bellPressed = () => {
+    audioRef.current?.play();
+    setDisplayState({ animation: true, visible: false });
+    setTimeout(() => {
+      setDisplayState({ animation: true, visible: true });
+    }, 1000);
+  };
+
   return (
     <>
+      <audio
+        src="https://res.cloudinary.com/dca1rzsyb/video/upload/v1703991294/ram_tk08z6.mp3"
+        ref={audioRef}
+        loop
+      />
+
+      <div
+        className={`absolute top-0 left-0 w-full h-full z-20 ${
+          displayState.visible ? "hidden" : ""
+        }`}
+      >
+        <Image
+          src="https://res.cloudinary.com/dca1rzsyb/image/upload/v1703913310/mohannic/wishes/parda_n17mse.jpg"
+          width={100}
+          height={100}
+          alt="ram mandir darshan wishes"
+          className={`w-full h-full object-cover  ${
+            displayState.animation
+              ? "animate__animated animate__slideOutLeft"
+              : ""
+          } absolute top-0`}
+        />
+        <Image
+          src="https://res.cloudinary.com/dca1rzsyb/image/upload/v1703913310/mohannic/wishes/parda_n17mse.jpg"
+          width={100}
+          height={100}
+          alt="ram mandir darshan wishes"
+          className={`w-full h-full object-cover ${
+            displayState.animation
+              ? "animate__animated animate__slideOutRight"
+              : ""
+          } absolute top-0`}
+        />
+
+        <div
+          className={`m-10 ml-20 z-30 absolute flex flex-col gap-10 ${
+            displayState.animation ? "hidden" : ""
+          }`}
+          onClick={bellPressed}
+        >
+          <span className="text-3xl bg-white font-extrabold text-center p-2 text-orange-500 animate__animated animate__rubberBand animate__slower animate__infinite">
+            घंटी बजाएं
+          </span>
+          <Image
+            src="https://res.cloudinary.com/dca1rzsyb/image/upload/w_200/v1703992301/bell-37464_1280_vatrhm.png"
+            width={100}
+            height={100}
+            alt="ram mandir darshan wishes"
+            className={`ml-10 animate__animated animate__swing animate__infinite`}
+          />
+        </div>
+      </div>
+
+      {/* Main page */}
       <div className="flex overflow-hidden">
         <div className="w-6 h-full overflow-hidden">
           <div className="animate-marquee ml-1">
