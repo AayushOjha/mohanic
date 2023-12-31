@@ -1,19 +1,40 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
+import { useSearchParams } from "next/navigation";
+import { getTimeLeft } from "@/helpers/getLeftTime";
+import moment from "moment";
+import "animate.css";
 
 type Props = {};
 const flags = Array(35).fill(null);
 
-const page = (props: Props) => {
+const Page = (props: Props) => {
+  const searchParams = useSearchParams();
+  const paramName = searchParams.get("name");
+  const name = paramName || "राम भक्त";
+  const date = moment("2024-01-22");
+
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft(date));
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(getTimeLeft(date));
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <>
       <div className="flex overflow-hidden">
         <div className="w-6 h-full overflow-hidden">
           <div className="animate-marquee ml-1">
-            {flags.map((flag) => (
-              <>
+            {flags.map((flag, i) => (
+              <div key={i}>
                 <Image
                   src="https://res.cloudinary.com/dca1rzsyb/image/upload/v1703913216/mohannic/wishes/bhagwa1_hyfkwu.png"
                   width={30}
@@ -21,17 +42,19 @@ const page = (props: Props) => {
                   className="py-1"
                   alt="ram mandir flag"
                 />
-              </>
+              </div>
             ))}
           </div>
         </div>
         <div className="flex-1 flex flex-col gap-7 py-10">
           <div className="w-fit mx-auto text-2xl font-semibold">
-            <h1 className="animate-pulse bg-gradient-to-r from-green-500 via-orange-500 to-violet-500 bg-clip-text text-transparent font-extrabold">
-              आयुष
+            <h1 className="animate__animated animate__swing animate__slow animate__infinite bg-gradient-to-r from-green-500 via-orange-500 to-violet-500 bg-clip-text text-transparent font-extrabold">
+              {name}
             </h1>
           </div>
-          <div className="s">
+          <div
+          // className="animate__animated animate__rubberBand animate__repeat-3	animate__slower"
+          >
             <Image
               src="https://res.cloudinary.com/dca1rzsyb/image/upload/v1703913198/mohannic/wishes/kitrf_eyw2my.png"
               width={100}
@@ -42,11 +65,14 @@ const page = (props: Props) => {
           </div>
           <div className="s">
             <p className="text-center font-bold text-green-500">
-              22<span className="text-red-500"> दिन ,</span> 13
-              <span className="text-red-500"> घंटे,</span> 10
-              <span className="text-red-500"> मिनट, </span> 29
+              {timeLeft.days} <span className="text-red-500"> दिन, </span>
+              {timeLeft.hours}
+              <span className="text-red-500"> घंटे, </span>
+              {timeLeft.minutes}
+              <span className="text-red-500"> मिनट, </span>
+              {timeLeft.seconds}
               <span className="text-red-500"> सेकंड </span>
-              पहले
+              <span className="text-red-500"> पहले</span>
             </p>
           </div>
 
@@ -55,7 +81,7 @@ const page = (props: Props) => {
             alt="Ram mandir subh aarambh wish text"
             width={100}
             height={100}
-            className="w-10/12 h-auto mx-auto"
+            className="w-10/12 h-auto mx-auto animate__animated animate__infinite animate__pulse animate__slower"
           />
           <div className="s">
             <Image
@@ -81,8 +107,8 @@ const page = (props: Props) => {
         </div>
         <div className="w-6 overflow-hidden">
           <div className="animate-marquee2 ml-1">
-            {flags.map((flag) => (
-              <>
+            {flags.map((flag, i) => (
+              <div key={i}>
                 <Image
                   src="https://res.cloudinary.com/dca1rzsyb/image/upload/v1703913216/mohannic/wishes/bhagwa1_hyfkwu.png"
                   width={30}
@@ -90,7 +116,7 @@ const page = (props: Props) => {
                   className="py-1"
                   alt="ram mandir flag"
                 />
-              </>
+              </div>
             ))}
           </div>
         </div>
@@ -99,4 +125,4 @@ const page = (props: Props) => {
   );
 };
 
-export default page;
+export default Page;
