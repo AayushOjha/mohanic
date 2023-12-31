@@ -4,8 +4,10 @@ import React, { useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { useSearchParams } from "next/navigation";
 import { getTimeLeft } from "@/helpers/getLeftTime";
+import TextField from "@mui/material/TextField";
 import moment from "moment";
 import "animate.css";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 const flags = Array(35).fill(null);
@@ -13,12 +15,14 @@ const flags = Array(35).fill(null);
 const Page = (props: Props) => {
   const searchParams = useSearchParams();
   const paramName = searchParams.get("name");
-  const name = paramName || "राम भक्त";
+  const name = paramName || "अपना नाम लिखे"; //"राम भक्त";
   const date = moment("2024-01-22");
 
   const audioRef = useRef<HTMLAudioElement>(null);
+  const router = useRouter();
 
   const [timeLeft, setTimeLeft] = useState(getTimeLeft(date));
+  const [inputName, setInputName] = useState("");
   const [displayState, setDisplayState] = useState({
     animation: false,
     visible: false,
@@ -114,15 +118,13 @@ const Page = (props: Props) => {
             ))}
           </div>
         </div>
-        <div className="flex-1 flex flex-col gap-7 py-10">
+        <div className="flex-1 flex flex-col gap-7 py-10 pb-24">
           <div className="w-fit mx-auto text-2xl font-semibold">
             <h1 className="animate__animated animate__swing animate__slow animate__infinite bg-gradient-to-r from-green-500 via-orange-500 to-violet-500 bg-clip-text text-transparent font-extrabold">
               {name}
             </h1>
           </div>
-          <div
-          // className="animate__animated animate__rubberBand animate__repeat-3	animate__slower"
-          >
+          <div>
             <Image
               src="https://res.cloudinary.com/dca1rzsyb/image/upload/v1703913198/mohannic/wishes/kitrf_eyw2my.png"
               width={100}
@@ -187,6 +189,40 @@ const Page = (props: Props) => {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Fixed CTA */}
+      <div
+        className={`fixed bottom-7 left-0 w-full z-40 px-3 flex gap-5 ${
+          displayState.visible ? "" : "hidden"
+        } `}
+      >
+        <div className="w-2/3 p-2 rounded text-white  border border-gray-900 bg-red-600 animate__animated animate__pulse animate__slow animate__infinite">
+          <input
+            type="text"
+            value={inputName}
+            onChange={({ currentTarget }) => {
+              setInputName(currentTarget.value);
+            }}
+            placeholder="👉 अपना नाम लिखे"
+            className="w-full bg-inherit outline-none placeholder-white text-center text-lg"
+          ></input>
+        </div>
+        <div
+          style={{ animationDuration: "7s" }}
+          className={` ${
+            inputName
+              ? "bg-green-700 text-white animate__shakeX"
+              : "bg-gray-400 text-gray-900"
+          } rounded p-2 px-4 text-center text-lg border border-gray-900 animate__animated animate__infinite`}
+          onClick={() => {
+            if (inputName) {
+              router.push(`/wishes/ram-mandir?name=${inputName}`);
+            }
+          }}
+        >
+          👉 देखें
         </div>
       </div>
     </>
