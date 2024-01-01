@@ -218,7 +218,7 @@ const Page = (props: Props) => {
           } rounded p-2 px-4 text-center text-lg border border-gray-900 animate__animated animate__infinite`}
           onClick={() => {
             if (inputName) {
-              router.push(`/wishes/ram-mandir?name=${inputName}`);
+              router.push(`/wishes/ram-mandir/view?name=${inputName}`);
             }
           }}
         >
