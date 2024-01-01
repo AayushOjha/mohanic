@@ -9,7 +9,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  ReactGA.initialize(process.env.GA_MEASUREMENT_ID || "");
+  ReactGA.initialize(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "");
 
   return (
     <html lang="en">
