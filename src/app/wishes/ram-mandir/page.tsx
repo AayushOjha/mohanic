@@ -171,7 +171,7 @@ const Page = (props: Props) => {
           />
           <Marquee>
             <div className="bg-orange-600 text-white opacity-90 font-extrabold px-5">
-              अयोध्या राम मंदिर उद्घाटन की तारीख तारीख 22 जनवरी 2024 हैं।
+              अयोध्या राम मंदिर उद्घाटन की तारीख 22 जनवरी 2024 हैं।
             </div>
           </Marquee>
         </div>
