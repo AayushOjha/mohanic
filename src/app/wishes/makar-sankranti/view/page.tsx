@@ -15,11 +15,16 @@ const flags = Array(35).fill(null);
 const shareMessage = (name: string) => {
   return `
 whatsapp://send?text=🪁🪁🪁🪁🪁🪁🪁🪁
+
 मैं *${name}* आपसे 
+
 मकर संक्रान्ति की बधाई से साथ
+
 एक प्यारा और अनोखा संदेश भेज रही हू।
+
 *नीचे ब्लू लाइन को टच करके देखे* 👇👇🏻👇👇 
-*https:/mohannic.com/wishes/makar-sankranti?name=${encodeURIComponent(name)}* 
+
+*https:/mohannic.com/wishes/makar-sankranti?name=${encodeURI(name)}* 
 `;
 };
 
