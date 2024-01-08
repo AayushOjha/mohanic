@@ -8,21 +8,16 @@ import moment from "moment";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import "animate.css";
 import { useRouter } from "next/navigation";
+import { snakeCase } from "lodash";
 
 type Props = {};
 const flags = Array(35).fill(null);
 
 const shareMessage = (name: string) => {
   return `
-whatsapp://send?text=*जय श्री राम 🚩🚩🚩🚩*
-
- मैं *${name}* आपसे निवेदन करता हूँ 
-
- कि ये सन्देश 22 जनवरी 2024 तक सभी फोन में होना चाहिए  
- 
- *नीचे ब्लू लाइन को टच करके देखे* 👇👇🏻👇👇 
- 
- *https:/mohannic.com/wishes/ram-mandir?name=${encodeURI(name)}* 
+whatsapp://send?text=*जय श्री राम 🚩🚩🚩🚩* %0A मैं *${name}* आपसे निवेदन करता हूँ %0A कि ये सन्देश 22 जनवरी 2024 तक सभी फोन में होना चाहिए %0A *नीचे ब्लू लाइन को टच करके देखे* 👇👇🏻👇👇 %0A *mohannic.com/wishes/ram-mandir?name=${snakeCase(
+    name
+  )}* 
 `;
 };
 

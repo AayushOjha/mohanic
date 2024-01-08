@@ -6,6 +6,7 @@ import { getTimeLeft } from "@/helpers/getLeftTime";
 import moment from "moment";
 import "animate.css";
 import { useRouter } from "next/navigation";
+import { snakeCase, startCase } from "lodash";
 
 type Props = {};
 const flags = Array(35).fill(null);
@@ -13,7 +14,7 @@ const flags = Array(35).fill(null);
 const Page = (props: Props) => {
   const searchParams = useSearchParams();
   const paramName = searchParams.get("name");
-  const name = paramName || "अपना नाम लिखे";
+  const name = startCase(paramName || "अपना नाम लिखे");
   const date = moment("2024-01-15");
 
   // const audioRef = useRef<HTMLAudioElement>(null);
@@ -212,7 +213,9 @@ const Page = (props: Props) => {
           } rounded p-2 px-4 text-center text-lg border border-gray-900 animate__animated animate__infinite`}
           onClick={() => {
             if (inputName) {
-              router.push(`/wishes/makar-sankranti/view?name=${inputName}`);
+              router.push(
+                `/wishes/makar-sankranti/view?name=${snakeCase(inputName)}`
+              );
             }
           }}
         >

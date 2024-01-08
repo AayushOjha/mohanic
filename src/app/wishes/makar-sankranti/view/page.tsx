@@ -1,37 +1,27 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import Marquee from "react-fast-marquee";
 import { useSearchParams } from "next/navigation";
 import { getTimeLeft } from "@/helpers/getLeftTime";
 import moment from "moment";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import "animate.css";
 import { useRouter } from "next/navigation";
+import { snakeCase, startCase } from "lodash";
 
 type Props = {};
 const flags = Array(35).fill(null);
 
 const shareMessage = (name: string) => {
-  return `
-whatsapp://send?text=🪁🪁🪁🪁🪁🪁🪁🪁🪁🪁
-
-मैं *${name}* आपसे
-
-मकर संक्रान्ति की बधाई से साथ
-
-एक प्यारा और अनोखा संदेश भेज रही हू।
-
-*नीचे ब्लू लाइन को टच करके देखे* 👇👇🏻👇👇 
-
-*https:/mohannic.com/wishes/makar-sankranti?name=${encodeURI(name)}* 
-`;
+  return `whatsapp://send?text=🪁🪁🪁🪁🪁🪁🪁🪁🪁🪁 %0A मैं *${name}* आपको मकर संक्रान्ति की बधाई से साथ एक प्यारा और अनोखा संदेश भेज रही हू। %0A *नीचे ब्लू लाइन को टच करके देखे* 👇👇🏻👇👇 %0A *mohannic.com/wishes/makar-sankranti?name=${snakeCase(
+    name
+  )}* %0A `;
 };
 
 const Page = (props: Props) => {
   const searchParams = useSearchParams();
   const paramName = searchParams.get("name");
-  const name = paramName || "अपना नाम लिखे";
+  const name = startCase(paramName || "अपना नाम लिखे");
   const date = moment("2024-01-15");
 
   const router = useRouter();
