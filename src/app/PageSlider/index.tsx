@@ -17,12 +17,6 @@ function PageSlider({ jokes }: IProps) {
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  // useContentful()
-  //   .getJokes()
-  //   .then((jokes) => {
-  //     console.log(jokes?.items.map((item) => item.fields));
-  //   });
-
   const handleScroll = () => {
     if (scrollableDivRef.current) {
       const position = scrollableDivRef.current.scrollLeft;
