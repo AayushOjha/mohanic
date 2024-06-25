@@ -27,8 +27,7 @@ export default function RootLayout({
         {/* Google Tag Manager (noscript)  */}
 
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M9P6LV2K"
-        // @ts-ignore
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        height="0" width="0" style={{display:"none",visibility:"hidden"}}></iframe></noscript>
         {/* End Google Tag Manager (noscript)  */}
 
         <div className="_nextxxx">{children}</div>
